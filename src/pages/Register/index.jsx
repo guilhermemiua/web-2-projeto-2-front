@@ -1,19 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { login } from '../../requests';
-import { UserContext } from '../../contexts/UserContext';
+import { register } from '../../requests';
 import Input from '../../components/Input';
 import './styles.css';
 
-const Login = () => {
+const Register = () => {
   const { push } = useHistory();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const { authenticate } = useContext(UserContext);
 
   const onFinish = async () => {
     try {
@@ -23,30 +20,28 @@ const Login = () => {
         return;
       }
 
-      const { data } = await login({
+      await register({
         email,
         password,
       });
 
-      console.log(data);
+      await toast.success('User registered with success!');
 
-      await authenticate(data.user, data.token);
-
-      await push('/pokemons');
+      await push('/login');
     } catch (error) {
-      toast.error(error?.response?.data?.message || 'Authentication error.');
+      toast.error(error?.response?.data?.message || 'Register error.');
     }
   };
 
   return (
-    <div className="login">
-      <div className="login-container">
-        <form className="login-form">
-          <h1 className="login-title">LOGIN</h1>
+    <div className="register">
+      <div className="register-container">
+        <form className="register-form">
+          <h1 className="register-title">REGISTER</h1>
 
           <div>
             <Input
-              className="login-email"
+              className="register-email"
               name="email"
               type="text"
               label="Email"
@@ -62,16 +57,16 @@ const Login = () => {
 
           <button
             type="button"
-            className="login-button"
+            className="register-button"
             onClick={() => onFinish()}
           >
-            SIGN IN
+            SIGN UP
           </button>
 
           <p>
-            Don't have an account?{' '}
-            <Link to="/register">
-              <span className="login-sign-up">Sign Up!</span>
+            Already have an account?{' '}
+            <Link to="/login">
+              <span className="register-sign-up">Login!</span>
             </Link>
           </p>
         </form>
@@ -80,4 +75,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

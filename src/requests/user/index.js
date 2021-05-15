@@ -6,4 +6,10 @@ const login = async ({ email, password }) =>
     password,
   });
 
-export { login };
+const register = async ({ email, password }) =>
+  api.post('/register', {
+    email,
+    password,
+  });
+
+export { login, register };
