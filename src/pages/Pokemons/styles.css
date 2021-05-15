@@ -1,0 +1,10 @@
+.pokemons-page {
+  background-color: #f4f3f3;
+  height: 100vh;
+}
+
+.pokemon-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}

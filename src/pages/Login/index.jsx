@@ -28,8 +28,6 @@ const Login = () => {
         password,
       });
 
-      console.log(data);
-
       await authenticate(data.user, data.token);
 
       await push('/pokemons');
