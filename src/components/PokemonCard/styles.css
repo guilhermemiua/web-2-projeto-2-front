@@ -5,10 +5,12 @@
   border-radius: 6px;
   margin-bottom: 20px;
   margin-right: 20px;
+  border: 1px solid #f1f1f1;
 }
 
 .pokemon-card > img {
   width: 150px;
+  height: 150px;
 }
 
 .pokemon-card-info {

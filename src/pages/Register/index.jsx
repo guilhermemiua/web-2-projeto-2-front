@@ -41,7 +41,7 @@ const Register = () => {
 
           <div>
             <Input
-              className="register-email"
+              inputClassName="register-email"
               name="email"
               type="text"
               label="Email"

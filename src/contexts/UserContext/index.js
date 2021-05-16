@@ -4,13 +4,10 @@ import {
   removeUserFromSessionStorage,
   setUserToSessionStorage,
   setTokenToSessionStorage,
+  getUserFromSessionStorage,
 } from '../../helpers/sessionStorage';
 
-export const UserContext = React.createContext({
-  user: undefined,
-  authenticate: () => null,
-  logout: () => null,
-});
+export const UserContext = React.createContext({});
 
 const UserProvider = ({ children }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -28,10 +25,10 @@ const UserProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const userStorage = localStorage.getItem('user');
+    const userStorage = getUserFromSessionStorage();
 
     if (userStorage) {
-      setLoggedUser(JSON.parse(userStorage));
+      setLoggedUser(userStorage);
     }
   }, []);
 

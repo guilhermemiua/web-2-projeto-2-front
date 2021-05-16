@@ -1,31 +1,25 @@
-.pokemons-header {
+.new-pokemon-header {
   display: flex;
   background-color: transparent;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin: 20px 0px;
 }
 
-.pokemons-search-input-container {
-  margin: 20px 0;
+.new-pokemon-input-container {
+  margin-bottom: 10px;
 }
 
-.pokemons-search-input {
+.new-pokemon-input {
   background-color: #fff;
 }
 
-.pokemons-page {
+.new-pokemon-page {
   background-color: #f6f6f6;
   height: 100vh;
 }
 
-.pokemon-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-
-.pokemons-new {
+.new-pokemon-go-back-button {
   background-color: #F45B69;
   color: #fff;
 }

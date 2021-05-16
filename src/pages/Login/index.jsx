@@ -44,7 +44,7 @@ const Login = () => {
 
           <div>
             <Input
-              className="login-email"
+              inputClassName="login-email"
               name="email"
               type="text"
               label="Email"

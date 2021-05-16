@@ -16,10 +16,21 @@ const removeUserFromSessionStorage = () => {
   sessionStorage.removeItem('user');
 };
 
+const getUserFromSessionStorage = () => {
+  const user = sessionStorage.getItem('user');
+
+  if (user) {
+    return JSON.parse(user);
+  }
+
+  return null;
+};
+
 export {
   setTokenToSessionStorage,
   removeTokenFromSessionStorage,
   setUserToSessionStorage,
   removeUserFromSessionStorage,
   getToken,
+  getUserFromSessionStorage,
 };
