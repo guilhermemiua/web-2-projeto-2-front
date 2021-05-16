@@ -2,6 +2,16 @@ import api from '../../config/api';
 
 import { getToken } from '../../helpers';
 
+const fetchPokemonById = async (id) => {
+  const token = getToken();
+
+  return api.get(`/pokemons/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
 const fetchPokemons = async ({ name }) => {
   const token = getToken();
 
@@ -62,4 +72,10 @@ const deletePokemon = async (id) => {
   });
 };
 
-export { fetchPokemons, createPokemon, updatePokemon, deletePokemon };
+export {
+  fetchPokemonById,
+  fetchPokemons,
+  createPokemon,
+  updatePokemon,
+  deletePokemon,
+};

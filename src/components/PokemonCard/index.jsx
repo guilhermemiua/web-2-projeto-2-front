@@ -41,7 +41,7 @@ const PokemonCard = ({
       </div>
       {loggedUser?.role === 'admin' && (
         <div className="pokemon-card-actions">
-          <Link to={`/pokemons/${id}/edit`}>
+          <Link to={`/pokemons/${id}/update`}>
             <FiEdit className="pokemon-card-icon" size={30} />
           </Link>
           <FiTrash

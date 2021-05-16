@@ -1,0 +1,26 @@
+.update-pokemon-header {
+  display: flex;
+  background-color: transparent;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0px;
+}
+
+.update-pokemon-input-container {
+  margin-bottom: 10px;
+}
+
+.update-pokemon-input {
+  background-color: #fff;
+}
+
+.update-pokemon-page {
+  background-color: #f6f6f6;
+  height: 100vh;
+}
+
+.update-pokemon-go-back-button {
+  background-color: #F45B69;
+  color: #fff;
+}
+

@@ -12,13 +12,10 @@ const Navbar = () => {
   return (
     <header>
       <nav className="container nav-container" id="nav">
-        <a href="/">
+        <a href="/pokemons">
           <img src={PokemonLogo} alt="Pokemon Logo" />
         </a>
         <ul>
-          <li>
-            <a href="/pokemons">Pokedex</a>
-          </li>
           <li>
             <button
               type="button"
