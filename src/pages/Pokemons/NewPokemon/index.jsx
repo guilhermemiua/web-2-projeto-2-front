@@ -4,6 +4,8 @@ import { toast } from 'react-toastify';
 
 import Input from '../../../components/Input';
 import Navbar from '../../../components/Navbar';
+import Select from '../../../components/Select';
+import { POKEMON_TYPES } from '../../../constants/pokemonTypes';
 import { createPokemon } from '../../../requests/pokemon';
 import './styles.css';
 
@@ -49,7 +51,7 @@ const NewPokemon = () => {
           <button
             type="button"
             className="new-pokemon-go-back-button"
-            onClick={() => goBack}
+            onClick={() => goBack()}
           >
             Go back
           </button>
@@ -62,32 +64,42 @@ const NewPokemon = () => {
           inputClassName="new-pokemon-input"
           containerClassName="new-pokemon-input-container"
         />
-        <Input
+        <Select
           name="type-1"
           label="Type 1"
           onChange={(event) => setType1(event.target.value)}
-          inputClassName="new-pokemon-input"
+          selectClassName="new-pokemon-input"
           containerClassName="new-pokemon-input-container"
-        />
-        <Input
+        >
+          <option value={null}> </option>
+          {POKEMON_TYPES.map((type) => (
+            <option value={type.value}>{type.name}</option>
+          ))}
+        </Select>
+        <Select
           name="type-2"
           label="Type 2"
           onChange={(event) => setType2(event.target.value)}
-          inputClassName="new-pokemon-input"
+          selectClassName="new-pokemon-input"
           containerClassName="new-pokemon-input-container"
-        />
+        >
+          <option value={null}> </option>
+          {POKEMON_TYPES.map((type) => (
+            <option value={type.value}>{type.name}</option>
+          ))}
+        </Select>
         <Input
           type="file"
           name="file"
           label="Pokemon image"
-          value={file}
+          accept="image/*"
           onChange={(event) => {
             const currentFile = event.target.files[0];
 
             if (
-              currentFile !== 'image/jpeg' ||
-              currentFile !== 'image/jpg' ||
-              currentFile !== 'image/png'
+              currentFile.type !== 'image/jpeg' &&
+              currentFile.type !== 'image/jpg' &&
+              currentFile.type !== 'image/png'
             ) {
               toast.error('File type not allowed');
               return;

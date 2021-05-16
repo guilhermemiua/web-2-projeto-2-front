@@ -4,6 +4,8 @@ import { toast } from 'react-toastify';
 
 import Input from '../../../components/Input';
 import Navbar from '../../../components/Navbar';
+import Select from '../../../components/Select';
+import { POKEMON_TYPES } from '../../../constants/pokemonTypes';
 import { getFile } from '../../../helpers';
 import { fetchPokemonById, updatePokemon } from '../../../requests/pokemon';
 import './styles.css';
@@ -65,7 +67,7 @@ const UpdatePokemon = () => {
           <button
             type="button"
             className="update-pokemon-go-back-button"
-            onClick={() => goBack}
+            onClick={() => goBack()}
           >
             Go back
           </button>
@@ -79,22 +81,32 @@ const UpdatePokemon = () => {
           inputClassName="update-pokemon-input"
           containerClassName="update-pokemon-input-container"
         />
-        <Input
+        <Select
           name="type-1"
           label="Type 1"
           value={type1}
           onChange={(event) => setType1(event.target.value)}
-          inputClassName="update-pokemon-input"
-          containerClassName="update-pokemon-input-container"
-        />
-        <Input
+          selectClassName="new-pokemon-input"
+          containerClassName="new-pokemon-input-container"
+        >
+          <option value={null}> </option>
+          {POKEMON_TYPES.map((type) => (
+            <option value={type.value}>{type.name}</option>
+          ))}
+        </Select>
+        <Select
           name="type-2"
           label="Type 2"
           value={type2}
           onChange={(event) => setType2(event.target.value)}
-          inputClassName="update-pokemon-input"
-          containerClassName="update-pokemon-input-container"
-        />
+          selectClassName="new-pokemon-input"
+          containerClassName="new-pokemon-input-container"
+        >
+          <option value={null}> </option>
+          {POKEMON_TYPES.map((type) => (
+            <option value={type.value}>{type.name}</option>
+          ))}
+        </Select>
 
         <button
           type="button"
