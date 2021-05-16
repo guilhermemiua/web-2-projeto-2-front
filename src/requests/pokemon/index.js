@@ -35,4 +35,31 @@ const createPokemon = async ({ name, type_1, type_2, file }) => {
   });
 };
 
-export { fetchPokemons, createPokemon };
+const updatePokemon = async ({ id, name, type_1, type_2, file }) => {
+  const token = getToken();
+
+  const data = new FormData();
+
+  data.append('name', name);
+  data.append('type_1', type_1);
+  data.append('type_2', type_2);
+  data.append('file', file);
+
+  return api.put(`/pokemons/${id}`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+const deletePokemon = async (id) => {
+  const token = getToken();
+
+  return api.delete(`/pokemons/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export { fetchPokemons, createPokemon, updatePokemon, deletePokemon };

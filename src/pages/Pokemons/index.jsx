@@ -15,27 +15,27 @@ const Pokemons = () => {
   const [pokemons, setPokemons] = useState([]);
   const [name, setName] = useState('');
 
+  const fetchAndSetPokemons = async () => {
+    const { data } = await fetchPokemons({ name });
+
+    setPokemons(
+      data.map((pokemon) => {
+        const types = [];
+
+        if (pokemon.type_1) types.push(pokemon.type_1);
+        if (pokemon.type_2) types.push(pokemon.type_2);
+
+        return {
+          id: pokemon.id,
+          name: pokemon.name,
+          imageURL: pokemon.image_name && getFile(pokemon.image_name),
+          types,
+        };
+      })
+    );
+  };
+
   useEffect(() => {
-    const fetchAndSetPokemons = async () => {
-      const { data } = await fetchPokemons({ name });
-
-      setPokemons(
-        data.map((pokemon) => {
-          const types = [];
-
-          if (pokemon.type_1) types.push(pokemon.type_1);
-          if (pokemon.type_2) types.push(pokemon.type_2);
-
-          return {
-            id: pokemon.id,
-            name: pokemon.name,
-            imageURL: pokemon.image_name && getFile(pokemon.image_name),
-            types,
-          };
-        })
-      );
-    };
-
     fetchAndSetPokemons();
   }, [name]);
 
@@ -67,9 +67,11 @@ const Pokemons = () => {
           {pokemons.map((pokemon) => (
             <PokemonCard
               key={pokemon.id}
+              id={pokemon.id}
               name={pokemon.name}
               imageURL={pokemon.imageURL}
               types={pokemon.types}
+              refetch={fetchAndSetPokemons}
             />
           ))}
         </div>
